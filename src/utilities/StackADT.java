@@ -1,5 +1,7 @@
 package utilities;
 
+import exceptions.EmptyQueueException;
+
 /**
  * Defines basic stack operations.
  * follows first in last out principle.
@@ -13,21 +15,21 @@ public interface StackADT<T> {
      * @param element the element to add
      * @throws NullPointerException if <code>element</code> is <code>null</code>
      */
-    void push(T element);
+    void push(T element) throws NullPointerException;
 
     /**
      * Removes the top element in the stack.
      * @return the removed element
      * @throws EmptyQueueException if the stack is empty
      */
-    T pop();
+    T pop() throws EmptyQueueException;
 
     /**
      * view the top element without removing it.
      * @return the top element
      * @throws EmptyQueueException if the stack is empty
      */
-    T peek();
+    T peek() throws EmptyQueueException;
 
     /**
      * Checks if the stack is empty.

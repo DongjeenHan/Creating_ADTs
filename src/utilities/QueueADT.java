@@ -1,5 +1,7 @@
 package utilities;
 
+import exceptions.EmptyQueueException;
+
 /**
  * Defines basic queue operations.
  * follows first in first out principle.

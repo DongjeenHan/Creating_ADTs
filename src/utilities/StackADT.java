@@ -2,6 +2,7 @@ package utilities;
 
 /**
  * Defines basic stack operations.
+ * follows first in last out principle.
  *
  * @param <T> type of elements in the stack
  */
@@ -15,14 +16,14 @@ public interface StackADT<T> {
     void push(T element);
 
     /**
-     * Removes and returns the top element.
+     * Removes the top element in the stack.
      * @return the removed element
      * @throws EmptyQueueException if the stack is empty
      */
     T pop();
 
     /**
-     * Returns the top element without removing it.
+     * view the top element without removing it.
      * @return the top element
      * @throws EmptyQueueException if the stack is empty
      */

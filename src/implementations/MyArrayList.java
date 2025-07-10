@@ -83,8 +83,9 @@ public class MyArrayList<E> implements ListADT<E> {
         if(toAdd == null) throw new NullPointerException("cannot add a null element to list");
         checkCapacity();
 
-        for(int i = size-1; i>=index; i--){
-            list[i] = list[i+1];
+        int i = size;
+        while(i>index){
+            list[i] = list[--i];
         }
         list[index] = toAdd;
         size++;
@@ -103,13 +104,14 @@ public class MyArrayList<E> implements ListADT<E> {
 
     @Override
     public boolean addAll(ListADT<? extends E> toAdd) throws NullPointerException {
-        if (toAdd == null) return false;
+        if (toAdd == null) throw new NullPointerException("cannot append null list");
         checkCapacity(toAdd.size());
         for (int i = 0; i < toAdd.size(); i++) {
             E item = toAdd.get(i);
-            if(item == null) throw new NullPointerException("cannot add null element(s) to list");
-            list[size] = item;
-            size++;
+            if(item != null){
+                list[size] = item;
+                size++;
+            }
         }
         return true;
     }
@@ -187,14 +189,13 @@ public class MyArrayList<E> implements ListADT<E> {
     @Override
     public E[] toArray(E[] toHold) throws NullPointerException {
         if (toHold == null) throw new NullPointerException("toHold cannot be null");
-        if (toHold.length < size)
-            return toArray();
+        if (toHold.length < size) toHold = getNewArray(size);
         System.arraycopy(list, 0, toHold, 0, size);
         return toHold;
     }
 
     @Override
-    public E[] toArray() {
+    public Object[] toArray() {
         return copy(size);
     }
 

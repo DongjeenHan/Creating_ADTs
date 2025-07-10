@@ -3,6 +3,7 @@ package implementations;
 import utilities.Iterator;
 import utilities.ListADT;
 
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public class MyArrayList<E> implements ListADT<E> {
@@ -189,7 +190,7 @@ public class MyArrayList<E> implements ListADT<E> {
     @Override
     public E[] toArray(E[] toHold) throws NullPointerException {
         if (toHold == null) throw new NullPointerException("toHold cannot be null");
-        if (toHold.length < size) toHold = getNewArray(size);
+        if (toHold.length < size) toHold = Arrays.copyOf(toHold, size);
         System.arraycopy(list, 0, toHold, 0, size);
         return toHold;
     }
